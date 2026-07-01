@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deutsche Gesundheits-Zeitung – Juli 2035</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #e8e4d8;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .newspaper {
+      background: #f8f5ef;
+      color: #1a1a18;
+      font-family: 'Source Serif 4', Georgia, serif;
+      padding: 0 0 2rem;
+      max-width: 900px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    }
+
+    .paper-header {
+      border-bottom: 3px double #1a1a18;
+      border-top: 3px double #1a1a18;
+      padding: 0.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .paper-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      line-height: 1;
+      color: #1a1a18;
+      margin: 0.3rem 0;
+      text-transform: uppercase;
+    }
+
+    .paper-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-family: 'Source Serif 4', serif;
+      color: #3a3a36;
+      border-top: 0.5px solid #1a1a18;
+      border-bottom: 0.5px solid #1a1a18;
+      padding: 3px 0;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      font-family: 'Source Serif 4', serif;
+      background: #1a1a18;
+      color: #f8f5ef;
+      padding: 2px 8px;
+      display: inline-block;
+      margin: 1rem 1.5rem 0;
+    }
+
+    .main-content {
+      padding: 0 1.5rem;
+    }
+
+    .leitartikel {
+      border-bottom: 2px solid #1a1a18;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .headline-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0.6rem 0 0.3rem;
+      color: #1a1a18;
+    }
+
+    .deck {
+      font-family: 'Source Serif 4', serif;
+      font-size: 15px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: #3a3a36;
+      margin-bottom: 0.6rem;
+      border-left: 2px solid #1a1a18;
+      padding-left: 0.7rem;
+    }
+
+    .dateline {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #4a4a46;
+      margin-bottom: 0.5rem;
+    }
+
+    .body-columns {
+      column-count: 3;
+      column-gap: 1.5rem;
+      column-rule: 0.5px solid #aaa9a0;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: justify;
+      hyphens: auto;
+      font-weight: 300;
+    }
+
+    .body-columns p {
+      margin: 0 0 0.6em;
+    }
+
+    .body-columns p:first-child::first-letter {
+      float: left;
+      font-family: 'Playfair Display', serif;
+      font-size: 58px;
+      font-weight: 900;
+      line-height: 0.8;
+      margin: 4px 6px 0 0;
+      color: #1a1a18;
+    }
+
+    .pull-quote {
+      border-top: 2px solid #1a1a18;
+      border-bottom: 2px solid #1a1a18;
+      padding: 0.5rem 0.3rem;
+      margin: 0.8rem 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.3;
+      color: #2a2a26;
+      column-span: all;
+      break-inside: avoid;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .section-head-line {
+      flex: 1;
+      height: 0.5px;
+      background: #1a1a18;
+    }
+
+    .section-head-text {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: #4a4a46;
+      white-space: nowrap;
+    }
+
+    .section-row {
+      display: grid;
+      grid-template-columns: 1fr 0.5px 1fr 0.5px 1fr;
+      gap: 0 1.2rem;
+      border-top: 2px solid #1a1a18;
+      padding-top: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .col-divider {
+      background: #aaa9a0;
+      width: 0.5px;
+      align-self: stretch;
+    }
+
+    .sub-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 0.4rem;
+      color: #1a1a18;
+    }
+
+    .sub-section p {
+      font-size: 13px;
+      line-height: 1.65;
+      margin: 0 0 0.5em;
+      text-align: justify;
+      hyphens: auto;
+      font-weight: 300;
+    }
+
+    .sub-section .dateline {
+      margin-bottom: 0.3rem;
+    }
+
+    .ad-box {
+      border: 1.5px solid #1a1a18;
+      padding: 0.7rem;
+      margin: 0 0 0.7rem;
+      background: #f0ece2;
+    }
+
+    .ad-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #6a6a66;
+      border-bottom: 0.5px solid #aaa9a0;
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+
+    .ad-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 4px;
+    }
+
+    .ad-box p {
+      font-size: 12px;
+      line-height: 1.5;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    .ticker-box {
+      border-top: 2px solid #1a1a18;
+      border-bottom: 2px solid #1a1a18;
+      padding: 0.5rem 0;
+      margin-top: 0.8rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .ticker-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      color: #f8f5ef;
+      background: #1a1a18;
+      padding: 2px 5px;
+      white-space: nowrap;
+      margin-top: 1px;
+    }
+
+    .ticker-text {
+      font-size: 12.5px;
+      line-height: 1.55;
+      font-style: italic;
+      font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+  <div class="newspaper">
+
+    <div class="paper-header">
+      <div class="paper-name">Deutsche Gesundheits-Zeitung</div>
+      <div class="paper-meta">
+        <span>Nr. 7 · Juli 2035</span>
+        <span>SDC · Szenariomanagement</span>
+        <span>Preis: 3,50 €</span>
+      </div>
+    </div>
+
+    <span class="section-label">Leitartikel</span>
+
+    <div class="main-content">
+
+      <div class="leitartikel">
+        <div class="headline-main">Der Roboter bedient, der Mensch berät: Wie Vor-Ort-Apotheken der Personalkrise trotzen</div>
+        <div class="deck">Fachkräftemangel und demografischer Wandel zwingen Apotheken zur Automation – doch am Tresen steht weiterhin ein Mensch.</div>
+        <div class="dateline">Berlin / Paderborn</div>
+        <div class="body-columns">
+          <p>Der demografische Wandel hat den deutschen Apothekenmarkt im Jahr 2035 an einen historischen Wendepunkt geführt. Das größte Problem der Gegenwart ist unübersehbar: Ein akuter, flächendeckender Mangel an Fachkräften – und zwar sowohl im pharmazeutisch-medizinischen Bereich als auch in der digitalen Infrastruktur. Da qualifiziertes Personal kaum noch zu finden ist, mussten inhabergeführte Apotheken ihre regulären Öffnungszeiten drastisch verkürzen.</p>
+          <p>Um den Betrieb dennoch aufrechterhalten zu können, erleben wir eine beschleunigte technologische Evolution im Hintergrund. Moderne Vor-Ort-Apotheken setzen heute auf eine hocheffiziente, vollautomatisierte robotergestützte Arzneimittelausgabe und digitale Kommissioniersysteme. Diese Maschinen halten den wenigen verbleibenden Fachkräften den Rücken frei.</p>
+          <div class="pull-quote">„Wer die Apotheke betritt, spricht mit einem Menschen – die Technik bleibt unsichtbar im Hintergrund."</div>
+          <p>Interessant ist jedoch die Haltung der Bevölkerung: Die gesellschaftliche Akzeptanz gegenüber reinen Digital- und KI-Lösungen im Gesundheitswesen bleibt skeptisch. Die Patienten verlangen nach wie vor eine tiefgehende, individuelle Beratung von Mensch zu Mensch. Aus diesem Grund setzen die Apotheken künstliche Intelligenz und Chatbots im direkten Kundenkontakt nur extrem sparsam ein. Die physische Lokalpräsenz bleibt das Fundament der Versorgung.</p>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div class="section-head-line"></div>
+        <div class="section-head-text">Wirtschaft &amp; Digitales · Politik &amp; Gesetzgebung</div>
+        <div class="section-head-line"></div>
+      </div>
+
+      <div class="section-row">
+
+        <div class="sub-section">
+          <div class="dateline">München</div>
+          <h3>Datenfestung Apotheke: Sicherer Hafen im digitalen App-Chaos</h3>
+          <p>Wer versucht, seine Gesundheit im Jahr 2035 rein digital zu organisieren, stößt schnell an Grenzen. Das heutige digitale Gesundheitsökosystem ist extrem fragmentiert. Krankenkassen, Tech-Konzerne, Pflegedienste und Start-ups drängen mit eigenen, inkompatiblen Plattformen auf den Markt. Für die Patienten bedeutet das ein unübersichtliches Chaos aus unzähligen Apps und mangelnder Interoperabilität.</p>
+          <p>Inmitten dieses zersplitterten Netzes haben sich die deutschen Vor-Ort-Apotheken zu einer wahren Datenfestung entwickelt. Den Apotheken ist es gelungen, einen souverän vernetzten Datenaustausch zu etablieren, der sowohl offen für den Empfang von E-Rezepten als auch absolut strikt geschützt gegen Missbrauch ist.</p>
+          <p>Die Apotheke vor Ort garantiert den Bürgern die absolute Datenhoheit. Dieses Vertrauen in den Datenschutz ist in Zeiten von Cyberkriminalität das stärkste Argument für die lokale Apotheke geworden.</p>
+        </div>
+
+        <div class="col-divider"></div>
+
+        <div class="sub-section">
+          <div class="dateline">Frankfurt</div>
+          <h3>Strenge Regulierung sichert lokale Resilienz gegen internationalen Plattformdruck</h3>
+          <p>Der Druck internationaler Online-Marktplätze und ausländischer Großinvestoren auf den deutschen Arzneimittelmarkt ist unvermindert hoch. Mit massiven Kapitalinvestitionen versuchen globale Plattformen seit Jahren, die stationäre Versorgung zu verdrängen. Dass ihnen dies bis heute nicht gelungen ist, liegt an der starr verankerten, aber flexibel angepassten Gesetzgebung der Bundesregierung.</p>
+          <p>Durch strenge regulatorische Rahmenbedingungen und ein Festhalten am bewährten Apothekenrecht schützt der Staat die lokale Infrastruktur. Ausländische Versender scheitern an den deutschen Qualitäts- und Sicherheitsstandards.</p>
+          <p>Die Politik hat erkannt, dass die flächendeckende Gesundheit der Bevölkerung nicht Algorithmen überlassen werden darf, sondern lokal verankert bleiben muss.</p>
+        </div>
+
+        <div class="col-divider"></div>
+
+        <div class="sub-section">
+          <div class="ad-box">
+            <div class="ad-label">Anzeige · Ring-Apotheke Paderborn</div>
+            <div class="ad-head">Unser Team hat Feierabend – unser Roboter nicht!</div>
+            <p>Nutzen Sie unseren neuen automatisierten 24/7-Ausgabeschalter an der Außenwand. Scannen Sie einfach den QR-Code Ihres E-Rezepts aus Ihrem souveränen Datensafe. Sicher, schnell und unabhängig von unseren verkürzten Ladenöffnungszeiten.</p>
+          </div>
+          <div class="ticker-box">
+            <span class="ticker-label">Ticker</span>
+            <span class="ticker-text">Lieferketten weiterhin unter Druck: Aufgrund globaler Rohstoffengpässe kämpfen Apotheken mit volatiler Medikamentenverfügbarkeit. Der Beschaffungsprozess erfordert täglich manuelle Höchstleistungen.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

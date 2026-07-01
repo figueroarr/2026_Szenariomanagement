@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deutsche Gesundheits-Zeitung – Juli 2035</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #e8e4d8;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .newspaper {
+      background: #f8f5ef;
+      color: #1a1a18;
+      font-family: 'Source Serif 4', Georgia, serif;
+      padding: 0 0 2rem;
+      max-width: 900px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    }
+
+    .paper-header {
+      border-bottom: 3px double #1a1a18;
+      border-top: 3px double #1a1a18;
+      padding: 0.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .paper-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      line-height: 1;
+      color: #1a1a18;
+      margin: 0.3rem 0;
+      text-transform: uppercase;
+    }
+
+    .paper-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-family: 'Source Serif 4', serif;
+      color: #3a3a36;
+      border-top: 0.5px solid #1a1a18;
+      border-bottom: 0.5px solid #1a1a18;
+      padding: 3px 0;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      font-family: 'Source Serif 4', serif;
+      background: #1a1a18;
+      color: #f8f5ef;
+      padding: 2px 8px;
+      display: inline-block;
+      margin: 1rem 1.5rem 0;
+    }
+
+    .main-content {
+      padding: 0 1.5rem;
+    }
+
+    .leitartikel {
+      border-bottom: 2px solid #1a1a18;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .headline-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 0.6rem 0 0.3rem;
+      color: #1a1a18;
+    }
+
+    .deck {
+      font-family: 'Source Serif 4', serif;
+      font-size: 15px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: #3a3a36;
+      margin-bottom: 0.6rem;
+      border-left: 2px solid #1a1a18;
+      padding-left: 0.7rem;
+    }
+
+    .dateline {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #4a4a46;
+      margin-bottom: 0.5rem;
+    }
+
+    .body-columns {
+      column-count: 3;
+      column-gap: 1.5rem;
+      column-rule: 0.5px solid #aaa9a0;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: justify;
+      hyphens: auto;
+      font-weight: 300;
+    }
+
+    .body-columns p {
+      margin: 0 0 0.6em;
+    }
+
+    .body-columns p:first-child::first-letter {
+      float: left;
+      font-family: 'Playfair Display', serif;
+      font-size: 58px;
+      font-weight: 900;
+      line-height: 0.8;
+      margin: 4px 6px 0 0;
+      color: #1a1a18;
+    }
+
+    .pull-quote {
+      border-top: 2px solid #1a1a18;
+      border-bottom: 2px solid #1a1a18;
+      padding: 0.5rem 0.3rem;
+      margin: 0.8rem 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.3;
+      color: #2a2a26;
+      column-span: all;
+      break-inside: avoid;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .section-head-line {
+      flex: 1;
+      height: 0.5px;
+      background: #1a1a18;
+    }
+
+    .section-head-text {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: #4a4a46;
+      white-space: nowrap;
+    }
+
+    .section-row {
+      display: grid;
+      grid-template-columns: 1fr 0.5px 1fr 0.5px 1fr;
+      gap: 0 1.2rem;
+      border-top: 2px solid #1a1a18;
+      padding-top: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .col-divider {
+      background: #aaa9a0;
+      width: 0.5px;
+      align-self: stretch;
+    }
+
+    .sub-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0 0 0.4rem;
+      color: #1a1a18;
+    }
+
+    .sub-section p {
+      font-size: 13px;
+      line-height: 1.65;
+      margin: 0 0 0.5em;
+      text-align: justify;
+      hyphens: auto;
+      font-weight: 300;
+    }
+
+    .sub-section .dateline {
+      margin-bottom: 0.3rem;
+    }
+
+    .ad-box {
+      border: 1.5px solid #1a1a18;
+      padding: 0.7rem;
+      margin: 0 0 0.7rem;
+      background: #f0ece2;
+    }
+
+    .ad-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #6a6a66;
+      border-bottom: 0.5px solid #aaa9a0;
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+    }
+
+    .ad-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 4px;
+    }
+
+    .ad-box p {
+      font-size: 12px;
+      line-height: 1.5;
+      margin: 0;
+      font-weight: 300;
+    }
+
+    .ticker-box {
+      border-top: 2px solid #1a1a18;
+      border-bottom: 2px solid #1a1a18;
+      padding: 0.5rem 0;
+      margin-top: 0.8rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .ticker-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      color: #f8f5ef;
+      background: #1a1a18;
+      padding: 2px 5px;
+      white-space: nowrap;
+      margin-top: 1px;
+    }
+
+    .ticker-text {
+      font-size: 12.5px;
+      line-height: 1.55;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .jobs-section {
+      margin-top: 0.8rem;
+      border-top: 2px solid #1a1a18;
+      padding-top: 0.6rem;
+    }
+
+    .jobs-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: #4a4a46;
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .jobs-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .job-ad {
+      flex: 1;
+      border: 1px solid #1a1a18;
+      padding: 0.55rem 0.65rem;
+      background: #f0ece2;
+    }
+
+    .job-ad-head {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+      line-height: 1.2;
+      border-bottom: 1px solid #1a1a18;
+      padding-bottom: 3px;
+    }
+
+    .job-ad p {
+      font-size: 11px;
+      line-height: 1.5;
+      font-weight: 300;
+      margin-bottom: 4px;
+    }
+
+    .job-ad .job-contact {
+      font-size: 10.5px;
+      font-weight: 600;
+      font-style: italic;
+      color: #2a2a26;
+    }
+
+    .sudoku-section {
+      margin-top: 0.8rem;
+      border-top: 2px solid #1a1a18;
+      padding-top: 0.6rem;
+      text-align: center;
+    }
+
+    .sudoku-grid {
+      display: inline-grid;
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: repeat(9, 1fr);
+      width: 100%;
+      max-width: 220px;
+      aspect-ratio: 1 / 1;
+      border: 2px solid #1a1a18;
+      margin: 0 auto;
+    }
+
+    .sudoku-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Source Serif 4', serif;
+      font-size: 11px;
+      font-weight: 600;
+      border: 0.5px solid #aaa9a0;
+      color: #1a1a18;
+    }
+
+    .sudoku-cell.given {
+      font-weight: 900;
+    }
+
+    .sudoku-cell.border-right {
+      border-right: 1.5px solid #1a1a18;
+    }
+    .sudoku-cell.border-bottom {
+      border-bottom: 1.5px solid #1a1a18;
+    }
+
+    .sudoku-caption {
+      font-size: 10px;
+      font-style: italic;
+      color: #4a4a46;
+      margin-top: 0.4rem;
+    }
+
+    .impressum {
+      margin-top: 0.8rem;
+      border-top: 2px solid #1a1a18;
+      padding-top: 0.6rem;
+    }
+
+    .impressum p {
+      font-size: 10px;
+      line-height: 1.6;
+      font-weight: 300;
+      color: #3a3a36;
+    }
+
+    .impressum .impressum-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 11px;
+      margin-bottom: 3px;
+      color: #1a1a18;
+    }
+
+    .mini-ads {
+      margin-top: 0.7rem;
+    }
+
+    .mini-ads-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      color: #4a4a46;
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .mini-ad {
+      border: 1px solid #1a1a18;
+      padding: 0.5rem 0.6rem;
+      margin-bottom: 0.6rem;
+      background: #f8f5ef;
+    }
+
+    .mini-ad-1 .mini-ad-head {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+      color: #1a1a18;
+      border-bottom: 1px solid #1a1a18;
+      padding-bottom: 3px;
+    }
+    .mini-ad-1 p {
+      font-size: 11px;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+    .mini-ad-1 .accent {
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .mini-ad-2 {
+      text-align: left;
+      background: #1a1a18;
+      color: #f8f5ef;
+    }
+    .mini-ad-2 .mini-ad-head {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #f8f5ef;
+      padding-bottom: 3px;
+    }
+    .mini-ad-2 p {
+      font-size: 11px;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+    .mini-ad-2 .accent {
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .mini-ad-3 .mini-ad-head {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #1a1a18;
+      padding-bottom: 3px;
+    }
+    .mini-ad-3 p {
+      font-size: 11px;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+    .mini-ad-3 .accent {
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .mini-ad-4 {
+      border-width: 1px;
+    }
+    .mini-ad-4 .mini-ad-head {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #1a1a18;
+      padding-bottom: 3px;
+    }
+    .mini-ad-4 .mini-ad-head .small-cap {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.3px;
+    }
+    .mini-ad-4 p {
+      font-size: 11.5px;
+      line-height: 1.45;
+      font-weight: 300;
+    }
+    .mini-ad-4 .accent {
+      font-weight: 700;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="newspaper">
+
+    <div class="paper-header">
+      <div class="paper-name">Deutsche Gesundheits-Zeitung</div>
+      <div class="paper-meta">
+        <span>Nr. 7 · Juli 2035</span>
+        <span>SDC 2026 · Szenariomanagement</span>
+        <span>Preis: 8,50 €</span>
+      </div>
+    </div>
+
+  <span class="section-label">Aktuelles</span>
+
+    <div class="main-content">
+
+      <div class="leitartikel">
+        <div class="headline-main">Der Roboter bedient, der Mensch berät: Wie Vor-Ort-Apotheken der Personalkrise trotzen</div>
+        <div class="deck">Fachkräftemangel und demografischer Wandel zwingen Apotheken zur Automation – doch am Tresen steht weiterhin ein Mensch.</div>
+        <div class="dateline">Berlin / Paderborn</div>
+        <div class="body-columns">
+          <p>Der demografische Wandel hat den deutschen Apothekenmarkt im Jahr 2035 an einen historischen Wendepunkt geführt. Das größte Problem der Gegenwart ist unübersehbar: Ein akuter, flächendeckender Mangel an Fachkräften – und zwar sowohl im pharmazeutisch-medizinischen Bereich als auch in der digitalen Infrastruktur. Da qualifiziertes Personal kaum noch zu finden ist, mussten inhabergeführte Apotheken ihre regulären Öffnungszeiten drastisch verkürzen.</p>
+          <p>Hier zeigt sich die schmerzhafte Kehrseite dieses Modells: Weil die Apotheken im direkten Kundenkontakt bewusst auf anonyme KI-Systeme und Chatbots verzichten und die Beratung eine rein menschliche Kernkompetenz bleibt, ist eine umfassende Gesundheitsberatung rund um die Uhr im Jahr 2035 schlichtweg unmöglich geworden. Während ausländische Plattformen mit einer unpersönlichen 24/7-Computer-Hotline locken, schließt die Apotheke vor Ort früher die Tür – die persönliche Nähe wird kontrolliert und verknappt.</p>
+          <p>Um den verbleibenden Betrieb dennoch aufrechterhalten zu können, erleben wir eine beschleunigte technologische Evolution im Hintergrund. Moderne Vor-Ort-Apotheken setzen heute auf eine hocheffiziente, vollautomatisierte robotergestützte Arzneimittelausgabe und digitale Kommissioniersysteme. Diese Maschinen halten den wenigen verbleibenden Fachkräften den Rücken frei.</p>
+          <div class="pull-quote">„Beratung gibt es bei uns nur mit menschlicher Empathie – und die ist im Jahr 2035 ein kostbares, zeitlich begrenztes Gut." — Thomas Bergmann, Apothekeninhaber</div>
+          <p>Thomas Bergmann, Inhaber einer traditionsreichen Apotheke, bestätigt diesen logischen Kompromiss: „Natürlich schmerzt es, wenn wir die Kernöffnungszeiten wegen des Fachkräftemangels kürzen müssen. Aber wir verweigern uns dem Trend, den Menschen durch einen Bildschirm zu ersetzen. Wenn wir geöffnet haben, nehmen wir uns Zeit für echte, tiefe Beratungsgespräche. Wenn wir schließen, übernimmt die Maschine im Hintergrund stumm die fehlerfreie Ausgabe.“</p>
+          <p>Interessant ist jedoch die Haltung der Bevölkerung: Die gesellschaftliche Akzeptanz gegenüber reinen Digital- und KI-Lösungen im Gesundheitswesen bleibt skeptisch. Die Patienten verlangen nach wie vor eine tiefgehende, individuelle Beratung von Mensch zu Mensch. Aus diesem Grund setzen die Apotheken künstliche Intelligenz im direkten Kundenkontakt nur extrem sparsam ein. Die physische Lokalpräsenz offline bleibt das Fundament der Versorgung.</p>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div class="section-head-line"></div>
+        <div class="section-head-text">Wirtschaft &amp; Digitales · Politik &amp; Gesetzgebung</div>
+        <div class="section-head-line"></div>
+      </div>
+
+      <div class="section-row">
+
+        <div class="sub-section">
+          <div class="dateline">München</div>
+          <h3>Datenfestung Apotheke: Sicherer Hafen im digitalen App-Chaos</h3>
+          <p>Wer versucht, seine Gesundheit im Jahr 2035 rein digital zu organisieren, stößt schnell an Grenzen. Das heutige digitale Gesundheitsökosystem ist extrem fragmentiert. Krankenkassen, Tech-Konzerne, Pflegedienste und Start-ups drängen mit eigenen, inkompatiblen Plattformen auf den Markt. Für die Patienten bedeutet das ein unübersichtliches Chaos aus unzähligen Apps und mangelnder Interoperabilität.</p>
+          <p>Inmitten dieses zersplitterten Netzes haben sich die deutschen Vor-Ort-Apotheken zu einer wahren Datenfestung entwickelt. Es ist eine faszinierende Paradoxie: Obwohl die digitale Außenwelt im Chaos versinkt, agieren die Apotheken als vollkommen sicheres Bindeglied. Trotz der Fragmentierung im Umfeld ist es den Apotheken gelungen, einen souverän vernetzten Datenaustausch zu etablieren, der sowohl offen für den Empfang von E-Rezepten als auch absolut strikt geschützt gegen Missbrauch ist.</p>
+          <p>Die Apotheke vor Ort garantiert den Bürgern die absolute Datenhoheit. Dieses Vertrauen in den Datenschutz ist in Zeiten von Cyberkriminalität das stärkste Argument für die lokale Apotheke geworden.</p>
+          <p>Dazu ordnet Dr. Elena Brandes, Gesundheitsökonomin am Deutschen Institut für Gesundheitsökonomie (DIG), ein: „Die Entscheidung, den Datenschutz und das Apothekenrecht starr zu regulieren, war rückblickend der Rettungsanker für die lokale Versorgung. Während internationale Tech-Konzerne Patientendaten oft als reinen Rohstoff betrachten, haben die Vor-Ort-Apotheken bewiesen, dass Datensouveränität und eine kontrollierte digitale Transformation Hand in Hand gehen können.“</p>
+        </div>
+
+        <div class="col-divider"></div>
+
+        <div class="sub-section">
+          <div class="dateline">Frankfurt</div>
+          <h3>Strenge Regulierung sichert lokale Resilienz gegen internationalen Plattformdruck</h3>
+          <p>Der Druck internationaler Online-Marktplätze und ausländischer Großinvestoren auf den deutschen Arzneimittelmarkt ist unvermindert hoch. Mit massiven Kapitalinvestitionen versuchen globale Plattformen seit Jahren, die stationäre Versorgung zu verdrängen. Dass ihnen dies bis heute nicht gelungen ist, liegt an der starr verankerten, aber flexibel angepassten Gesetzgebung der Bundesregierung.</p>
+          <p>Durch strenge regulatorische Rahmenbedingungen und ein Festhalten am bewährten Apothekenrecht schützt der Staat die lokale Infrastruktur. Ausländische Versender scheitern an den deutschen Qualitäts- und Sicherheitsstandards.</p>
+          <p>Die Politik hat erkannt, dass die flächendeckende Gesundheit der Bevölkerung nicht Algorithmen überlassen werden darf, sondern lokal verankert bleiben muss.</p>
+
+          <div class="sudoku-section">
+            <div class="jobs-label">— Sudoku —</div>
+            <div class="sudoku-grid">
+              <div class="sudoku-cell given">5</div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell given">6</div>
+              <div class="sudoku-cell given">7</div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">7</div>
+              <div class="sudoku-cell given border-right">2</div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">9</div>
+              <div class="sudoku-cell given border-right">5</div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">8</div>
+              <div class="sudoku-cell border-bottom"></div>
+              <div class="sudoku-cell border-bottom"></div>
+              <div class="sudoku-cell border-right border-bottom"></div>
+              <div class="sudoku-cell border-bottom"></div>
+              <div class="sudoku-cell border-bottom"></div>
+              <div class="sudoku-cell border-right border-bottom"></div>
+              <div class="sudoku-cell border-bottom"></div>
+              <div class="sudoku-cell given border-bottom">6</div>
+              <div class="sudoku-cell given border-bottom">7</div>
+              <div class="sudoku-cell given">8</div>
+              <div class="sudoku-cell given">5</div>
+              <div class="sudoku-cell given border-right">9</div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">6</div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">2</div>
+              <div class="sudoku-cell given">3</div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">2</div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given border-right">3</div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">1</div>
+              <div class="sudoku-cell given border-bottom">7</div>
+              <div class="sudoku-cell border-bottom"></div>
+              <div class="sudoku-cell border-right border-bottom"></div>
+              <div class="sudoku-cell given border-bottom">9</div>
+              <div class="sudoku-cell border-bottom"></div>
+              <div class="sudoku-cell border-right border-bottom"></div>
+              <div class="sudoku-cell given border-bottom">8</div>
+              <div class="sudoku-cell border-bottom"></div>
+              <div class="sudoku-cell border-bottom"></div>
+              <div class="sudoku-cell given">9</div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell given">2</div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">8</div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell given">6</div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">3</div>
+              <div class="sudoku-cell given">4</div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell given">2</div>
+              <div class="sudoku-cell given">8</div>
+              <div class="sudoku-cell border-right"></div>
+              <div class="sudoku-cell"></div>
+              <div class="sudoku-cell given">7</div>
+              <div class="sudoku-cell given">9</div>
+            </div>
+            <div class="sudoku-caption">Schwierigkeit: Mittel · Lösung in der nächsten Ausgabe</div>
+          </div>
+
+          <div class="jobs-section">
+            <div class="jobs-label">— Stellenanzeigen —</div>
+            <div class="jobs-row">
+              <div class="job-ad">
+                <div class="job-ad-head">PTA (m/w/d) gesucht!</div>
+                <p>Die Ring-Apotheke Paderborn sucht Verstärkung für die persönliche Kundenberatung vor Ort. Unser Kommissionier-Roboter hält Ihnen im Hintergrund den Rücken frei!</p>
+                <p class="job-contact">Bewerbung an: jobs@ring-apotheke-pb.de</p>
+              </div>
+
+              <div class="job-ad">
+                <div class="job-ad-head">IT-Systemelektroniker (m/w/d) gesucht!</div>
+                <p>Zur Wartung unserer vollautomatisierten Arzneimittelausgabe und des neuen KI-Lieferketten-Inforadars suchen wir ab sofort einen engagierten Techniker für unsere digitale Infrastruktur.</p>
+                <p class="job-contact">Bewerbung an: admin@apotheken-zentrum-pb.de</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-divider"></div>
+
+        <div class="sub-section">
+          <div class="jobs-label">— Anzeigen —</div>
+          <div class="ad-box">
+            <div class="ad-label">Ring-Apotheke Paderborn</div>
+            <div class="ad-head">Unser Team hat Feierabend – unser Roboter nicht!</div>
+            <p>Nutzen Sie unseren neuen automatisierten 24/7-Ausgabeschalter an der Außenwand. Scannen Sie einfach den QR-Code Ihres E-Rezepts aus Ihrem souveränen Datensafe. Sicher, schnell und unabhängig von unseren verkürzten Ladenöffnungszeiten.</p>
+          </div>
+
+          <div class="mini-ads">
+            <div class="mini-ad mini-ad-1">
+              <div class="mini-ad-head">HealthTrack Pro</div>
+              <p>Messen Sie <span class="accent">Puls, Blutdruck</span> und <span class="accent">Schlafqualität</span> rund um die Uhr! Die Nr. 1 App für Ihr tägliches Wohlbefinden. Sichern Sie sich jetzt die optimierte Version für Ihr Smartphone.</p>
+            </div>
+
+            <div class="mini-ad mini-ad-2">
+              <div class="mini-ad-head">E-Doc Schnell-Diagnose</div>
+              <p>Keine Lust auf volle Wartezimmer? Erhalten Sie Ihr <span class="accent">Digital-Rezept in nur 3 Minuten</span> direkt via KI-Chatbot — die Zukunft der Medizin auf Ihrem Bildschirm.</p>
+            </div>
+
+            <div class="mini-ad mini-ad-3">
+              <div class="mini-ad-head">Pflege-Manager 2035</div>
+              <p>Die All-in-One App für pflegende Angehörige. Medikamente, Vitaldaten und Pflegepläne ganz einfach verwalten. <span class="accent">Entlastung auf Knopfdruck!</span></p>
+            </div>
+
+            <div class="mini-ad mini-ad-4">
+              <div class="mini-ad-head"><span class="small-cap">MEDI</span>Check <span class="small-cap">AI</span></div>
+              <p>Scannen Sie Ihre Tabletten per Kamera! Unsere KI gleicht Ihre Präparate ab und warnt sofort vor <span class="accent">gefährlichen Wechselwirkungen.</span> Maximale Sicherheit im Alltag.</p>
+            </div>
+          </div>
+
+          <div class="ticker-box" style="border-top: 2px solid #1a1a18; margin-top: 0.8rem;">
+            <span class="ticker-label">Ticker</span>
+            <span class="ticker-text">Lieferketten weiterhin unter Druck: Aufgrund globaler Rohstoffengpässe kämpfen Apotheken mit volatiler Medikamentenverfügbarkeit. Der Beschaffungsprozess erfordert täglich manuelle Höchstleistungen.</span>
+          </div>
+          <div class="ticker-box">
+            <span class="ticker-label">Neu</span>
+            <span class="ticker-text">Lieferketten-Inforadar: Vor-Ort-Apotheken setzen ab diesem Monat auf ein prädiktives KI-Frühwarnsystem, um Engpässe bei kritischen Wirkstoffen lange vor ihrem Auftreten abzufangen.</span>
+          </div>
+
+          <div class="impressum">
+            <div class="impressum-title">Impressum</div>
+            <p>
+              Deutsche Gesundheits-Zeitung (Juli 2035)<br>
+              Verlag: DGZ Medien GmbH, Nürnberg<br>
+              Chefredaktion: Arina Rukina, Renata Figueroa, Nadja Saleh<br>
+              Kontakt: redaktion@dgz-medien.de
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
